@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.onthecrow.trainy.presentation.auth.AuthViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/authLeftGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="24dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/authRightGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="24dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/authLeftButtonsGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="70dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/authRightButtonsGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="70dp" />
+
+        <ImageView
+            android:id="@+id/authLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="65dp"
+            android:src="@drawable/ic_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="14dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/auth_title"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/authEmailTextInputLayout"
+            app:layout_constraintStart_toStartOf="@id/authEmailTextInputLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/authEmailTextInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/auth_phone_hint"
+            app:layout_constraintBottom_toTopOf="@id/authSocialTitle"
+            app:layout_constraintEnd_toEndOf="@id/authRightGuideline"
+            app:layout_constraintStart_toStartOf="@id/authLeftGuideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/authPhoneEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:lines="1"
+                android:maxLength="12"
+                android:maxLines="1"
+                android:text="@={viewModel.phoneNumber}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/authCodeTextInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/auth_code_hint"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/authEmailTextInputLayout"
+            app:layout_constraintEnd_toEndOf="@id/authEmailTextInputLayout"
+            app:layout_constraintStart_toStartOf="@id/authEmailTextInputLayout"
+            app:layout_constraintTop_toTopOf="@id/authEmailTextInputLayout"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/authCodeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:lines="1"
+                android:maxLength="12"
+                android:maxLines="1"
+                android:text="@={viewModel.code}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/authPhoneButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="15dp"
+            android:src="@drawable/ic_arrow_forward_black_24dp"
+            android:tint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@id/authEmailTextInputLayout"
+            app:layout_constraintEnd_toEndOf="@id/authEmailTextInputLayout"
+            app:onClickLiveData="@{viewModel.onPhoneAuthClick}"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/authSocialTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/auth_social_title"
+            app:layout_constraintBottom_toTopOf="@id/authGoogleButton"
+            app:layout_constraintEnd_toEndOf="@id/authRightGuideline"
+            app:layout_constraintStart_toStartOf="@id/authLeftGuideline"
+            app:layout_constraintTop_toBottomOf="@id/authEmailTextInputLayout" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0.7dp"
+            android:layout_marginEnd="12dp"
+            android:alpha="0.5"
+            android:background="@color/divider"
+            app:layout_constraintBottom_toBottomOf="@id/authSocialTitle"
+            app:layout_constraintEnd_toStartOf="@id/authSocialTitle"
+            app:layout_constraintStart_toStartOf="@id/authLeftGuideline"
+            app:layout_constraintTop_toTopOf="@id/authSocialTitle" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0.7dp"
+            android:layout_marginStart="12dp"
+            android:alpha="0.5"
+            android:background="@color/divider"
+            app:layout_constraintBottom_toBottomOf="@id/authSocialTitle"
+            app:layout_constraintEnd_toEndOf="@id/authRightGuideline"
+            app:layout_constraintStart_toEndOf="@id/authSocialTitle"
+            app:layout_constraintTop_toTopOf="@id/authSocialTitle" />
+
+        <Button
+            android:id="@+id/authGoogleButton"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/auth_google_button"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toTopOf="@id/authFacebookButton"
+            app:layout_constraintEnd_toEndOf="@id/authRightButtonsGuideline"
+            app:layout_constraintStart_toStartOf="@id/authLeftButtonsGuideline"
+            app:layout_constraintTop_toBottomOf="@id/authSocialTitle"
+            app:onClickLiveData="@{viewModel.onGoogleAuthClick}" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_google"
+            app:layout_constraintBottom_toBottomOf="@id/authGoogleButton"
+            app:layout_constraintStart_toStartOf="@id/authGoogleButton"
+            app:layout_constraintTop_toTopOf="@id/authGoogleButton"
+            tools:ignore="ContentDescription" />
+
+        <Button
+            android:id="@+id/authFacebookButton"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/auth_facebook_button"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toTopOf="@id/authVkButton"
+            app:layout_constraintEnd_toEndOf="@id/authRightButtonsGuideline"
+            app:layout_constraintStart_toStartOf="@id/authLeftButtonsGuideline"
+            app:layout_constraintTop_toBottomOf="@id/authGoogleButton"
+            app:onClickLiveData="@{viewModel.onFacebookAuthClick}" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_facebook"
+            app:layout_constraintBottom_toBottomOf="@id/authFacebookButton"
+            app:layout_constraintStart_toStartOf="@id/authFacebookButton"
+            app:layout_constraintTop_toTopOf="@id/authFacebookButton"
+            tools:ignore="ContentDescription" />
+
+        <Button
+            android:id="@+id/authVkButton"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/auth_vk_button"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/authRightButtonsGuideline"
+            app:layout_constraintStart_toStartOf="@id/authLeftButtonsGuideline"
+            app:layout_constraintTop_toBottomOf="@id/authFacebookButton"
+            app:onClickLiveData="@{viewModel.onVKAuthClick}" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_vk"
+            app:layout_constraintBottom_toBottomOf="@id/authVkButton"
+            app:layout_constraintStart_toStartOf="@id/authVkButton"
+            app:layout_constraintTop_toTopOf="@id/authVkButton"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

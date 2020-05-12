@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Trainy</string>
+    <string name="facebook_app_id">555449878502246</string>
+    <string name="fb_login_protocol_scheme">fb555449878502246</string>
+
+    <!--  Image crop  -->
+    <string name="image_chooser_title">Выберите источник</string>
+    <string name="image_crop_cancel">Отмена</string>
+    <string name="image_crop_select">Выбрать</string>
+    <!--  Image crop  -->
+
+    <!--  Progress dialog  -->
+    <string name="progress_dialog_title">Please wait…</string>
+    <!--  Progress dialog  -->
+
+    <!--  Auth  -->
+    <string name="auth_error">Auth was unsuccessful</string>
+    <string name="auth_cancelled">Auth was cancelled</string>
+    <string name="auth_phone_hint">Phone number</string>
+    <string name="auth_social_title">or</string>
+    <string name="auth_google_button">Sign in with Google</string>
+    <string name="auth_facebook_button">Sign in with Facebook</string>
+    <string name="auth_vk_button">Sign in with VK</string>
+    <string name="auth_code_hint">Code</string>
+    <string name="auth_title">Welcome to Trainy</string>
+    <!--  Auth  -->
+
+</resources>
