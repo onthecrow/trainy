@@ -1,21 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.onthecrow.trainy.presentation.main.MainViewModel" />
+    </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/mainFragmentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingBottom="?attr/actionBarSize"
+            app:layout_anchor="@id/bar" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/mainToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:fitStatusBar="@{true}"
+            app:navigationIcon="@drawable/ic_chevron_left" />
+
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bar"
+            style="@style/Widget.MaterialComponents.BottomAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             app:fabAlignmentMode="center"
             app:fabAnimationMode="scale"
             app:fabCradleMargin="8dp"
-            style="@style/Widget.MaterialComponents.BottomAppBar"
+            app:fabCradleRoundedCornerRadius="6dp"
             app:fabCradleVerticalOffset="14dp"
-            app:fabCradleRoundedCornerRadius="6dp"/>
+            app:navigationIcon="@drawable/ic_menu" />
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -24,7 +50,86 @@
             android:layout_height="wrap_content"
             app:backgroundTint="@color/colorPrimary"
             app:borderWidth="0dp"
-            app:layout_anchor="@id/bar"/>
+            app:layout_anchor="@id/bar"
+            tools:ignore="ContentDescription" />
+
+        <View
+            android:id="@+id/mainContentTint"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black40"
+            android:visibility="gone" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mainBottomSheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/navigation"
+            android:translationZ="8dp"
+            app:behavior_hideable="true"
+            app:behavior_peekHeight="0dp"
+            app:layout_behavior="@string/bottom_sheet_behavior">
+
+            <ImageView
+                android:id="@+id/navigationAvatar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="20dp"
+                app:layout_constraintBottom_toTopOf="@id/navigationNavigationView"
+                app:layout_constraintEnd_toStartOf="@id/navigationLogin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:roundedImageUrl="@{viewModel.dummyAvatar}"
+                tools:ignore="ContentDescription"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/navigationLogin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="onthecrow"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/navigationLevel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/navigationAvatar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="onthecrow" />
+
+            <TextView
+                android:id="@+id/navigationLevel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Lvl 10"
+                app:layout_constraintBottom_toTopOf="@id/navigationNavigationView"
+                app:layout_constraintEnd_toEndOf="@id/navigationLogin"
+                app:layout_constraintStart_toStartOf="@id/navigationLogin"
+                app:layout_constraintTop_toBottomOf="@id/navigationLogin" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/divider"
+                app:layout_constraintBottom_toTopOf="@id/navigationNavigationView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.navigation.NavigationView
+                android:id="@+id/navigationNavigationView"
+                style="@style/Widget.Design.NavigationView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/navigation"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/navigationAvatar"
+                app:menu="@menu/main_menu" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </layout>

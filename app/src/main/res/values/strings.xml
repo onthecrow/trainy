@@ -23,6 +23,19 @@
     <string name="auth_vk_button">Sign in with VK</string>
     <string name="auth_code_hint">Code</string>
     <string name="auth_title">Welcome to Trainy</string>
+    <string name="navigation_feed">Feed</string>
+    <string name="navigation_map">Map</string>
+    <string name="navigation_chat">Chat</string>
+    <string name="navigation_training">Training</string>
     <!--  Auth  -->
+
+    <string name="dummy_url">https://vokrug.tv/pic/news/5/f/c/2/rsz300x300_5fc2879465129c11d65749ab9e3db7cc.jpg</string>
+    <string name="navigation_profile">Profile</string>
+    <string name="training_fragment_title">Training</string>
+    <string name="settings_fragment_title">Settings</string>
+    <string name="profile_fragment_title">Profile</string>
+    <string name="map_fragment_title">Map</string>
+    <string name="feed_fragment_title">Feed</string>
+    <string name="chat_fragment_title">Chat</string>
 
 </resources>

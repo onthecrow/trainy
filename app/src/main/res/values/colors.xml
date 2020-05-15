@@ -2,10 +2,11 @@
 <resources>
     <color name="colorPrimary">#FF5252</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">@color/colorPrimary</color>
+    <color name="colorAccent">#FF5252</color>
     <color name="background">#121212</color>
     <color name="navigation">#2d2d2d</color>
     <color name="white">#ffffff</color>
     <color name="black40">#66000000</color>
-    <color name="divider">#979797</color>
+    <color name="divider">#1effffff</color>
+    <color name="white60">#99ffffff</color>
 </resources>
