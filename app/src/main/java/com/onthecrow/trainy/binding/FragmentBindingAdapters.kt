@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -20,6 +21,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
@@ -77,7 +79,7 @@ class FragmentBindingAdapters constructor(
         url?.let {
             Glide.with(applicationContext)
                 .load(url)
-                .transform(CircleCrop())
+                .transform(CenterCrop(), CircleCrop())
                 .listener(listener)
                 .into(imageView)
         }
@@ -205,6 +207,15 @@ class FragmentBindingAdapters constructor(
     @BindingAdapter("onClickLiveData")
     fun imageToCrop(view: View, clickLiveData: MutableLiveData<Event<Any>>) {
         view.setOnClickListener { clickLiveData.postValue(Event(Any())) }
+    }
+
+    @BindingAdapter("fitStatusBar")
+    fun fitStatusBar(view: View, isFit: Boolean) {
+        if (isFit) {
+            (view.layoutParams as ViewGroup.MarginLayoutParams).apply {
+                topMargin = view.rootWindowInsets.systemWindowInsetTop
+            }
+        }
     }
 }
 

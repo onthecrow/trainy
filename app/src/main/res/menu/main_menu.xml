@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <item
+        android:id="@+id/feed"
+        android:checkable="true"
+        android:checked="true"
+        android:icon="@drawable/ic_feed"
+        android:title="@string/navigation_feed" />
+    <item
+        android:id="@+id/map"
+        android:checkable="true"
+        android:icon="@drawable/ic_navigation_map"
+        android:title="@string/navigation_map" />
+    <item
+        android:id="@+id/chat"
+        android:checkable="true"
+        android:icon="@drawable/ic_navigation_chat"
+        android:title="@string/navigation_chat" />
+    <item
+        android:id="@+id/training"
+        android:checkable="true"
+        android:icon="@drawable/ic_navigation_training"
+        android:title="@string/navigation_training" />
+    <item
+        android:id="@+id/profile"
+        android:checkable="true"
+        android:icon="@drawable/ic_profile"
+        android:title="@string/navigation_profile" />
 </menu>

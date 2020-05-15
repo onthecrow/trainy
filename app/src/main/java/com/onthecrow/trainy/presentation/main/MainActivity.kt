@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import com.onthecrow.trainy.R
 import com.onthecrow.trainy.base.BaseActivity
 import com.onthecrow.trainy.extensions.makeStatusBarTransparent
+import com.onthecrow.trainy.presentation.auth.AuthFragmentDirections
 import com.onthecrow.trainy.utils.VKUtils
 
 class MainActivity : BaseActivity<MainViewModel>() {
@@ -16,17 +17,16 @@ class MainActivity : BaseActivity<MainViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_App)
+        makeStatusBarTransparent()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        makeStatusBarTransparent()
-
         viewModel.isLoggedIn.observe(
             this,
             Observer {
-                it?.hasBeenHandled?.let { isHandled ->
-                    if (!isHandled)
-                        findNavController(R.id.mainNavHostFragment).navigate(R.id.mainFragment)
+                it?.getContentIfNotHandled()?.let {
+                    findNavController(R.id.mainNavHostFragment).navigate(
+                        AuthFragmentDirections.actionAuthFragmentToMainFragment()
+                    )
                 }
             })
     }
